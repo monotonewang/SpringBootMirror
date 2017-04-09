@@ -3,8 +3,7 @@ package com.demo.springboot.controller;
 import com.demo.springboot.pojo.Person;
 import com.demo.springboot.respository.PersonRespository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +20,35 @@ public class PersonController {
     @GetMapping(value = "/getPerson")
     public List<Person> getPersons(){
         return personRespository.findAll();
+    }
+
+    @PostMapping(value = "/addPerson")
+    public Person addPerson(@RequestParam(value = "age") Integer age,
+                            @RequestParam(value = "name") String name){
+        Person person=new Person();
+        person.setAge(age);
+        person.setName(name);
+        return personRespository.save(person);
+    }
+
+    @GetMapping(value = "/getOnePerson/{id}")
+    public Person getOnePerson(@PathVariable("id") Integer id){
+        return  personRespository.findOne(id);
+    }
+
+    @PutMapping(value = "/updatePerson/{id}")
+    public Person updatePerson(@PathVariable("id") Integer id,
+                               @RequestParam("age") Integer age,
+                               @RequestParam("name") String name){
+        Person person=new Person();
+        person.setId(id);
+        person.setAge(age);
+        person.setName(name);
+        return  personRespository.save(person);
+    }
+
+    @DeleteMapping(value = "deletePerson/{id}")
+    public void deletePerson(@PathVariable("id") Integer id){
+        personRespository.delete(id);
     }
 }

@@ -1,1 +1,1 @@
-SpringBoot thymeleaf
+SpringBoot + thymeleaf + Spring-data-jpa 
