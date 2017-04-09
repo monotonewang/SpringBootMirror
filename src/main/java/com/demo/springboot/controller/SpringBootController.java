@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Created by wang on 17-4-9.
  */
+//@RestController =@Controller+@ResponseBody
 @RestController
 public class SpringBootController {
 
@@ -34,4 +35,9 @@ public class SpringBootController {
 
     @Autowired
     private PersonProperties personProperties;
+
+    @RequestMapping(value = "/getHtml",method = RequestMethod.GET)
+    public String getHtml(){
+        return "SpringBoot";
+    }
 }
