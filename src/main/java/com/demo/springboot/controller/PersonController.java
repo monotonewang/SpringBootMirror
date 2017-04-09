@@ -2,6 +2,7 @@ package com.demo.springboot.controller;
 
 import com.demo.springboot.pojo.Person;
 import com.demo.springboot.respository.PersonRespository;
+import com.demo.springboot.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,9 @@ import java.util.List;
 public class PersonController {
 
 //    INSERT into  person  (age,name) values (18,'zhangsan');
+
+    @Autowired
+    private PersonService personService;
 
     @Autowired
     private PersonRespository personRespository;
@@ -51,4 +55,10 @@ public class PersonController {
     public void deletePerson(@PathVariable("id") Integer id){
         personRespository.delete(id);
     }
+
+    @PostMapping(value = "/insertPersons")
+    public void insertPersons(){
+        personService.insertPersons();
+    }
+
 }
