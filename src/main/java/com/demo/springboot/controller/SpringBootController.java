@@ -1,5 +1,7 @@
 package com.demo.springboot.controller;
 
+import com.demo.springboot.properties.PersonProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,8 +22,16 @@ public class SpringBootController {
 //        return height;
     }
 
+    /**
+     * single param
+     * @return
+     */
     @RequestMapping(value="/getHeight",method= RequestMethod.GET)
     public String getHeight(){
-        return height;
+//        return height;
+        return personProperties.getName();
     }
+
+    @Autowired
+    private PersonProperties personProperties;
 }

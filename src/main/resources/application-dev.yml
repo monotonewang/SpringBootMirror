@@ -1,0 +1,7 @@
+server:
+  port: 8081
+  context-path: /SpringBoot
+height: top
+person:
+  name: zhansan
+  age : 19

@@ -1,4 +1,4 @@
-server:
-  port: 8081
-  context-path: /SpringBoot
-height: top
+#delplog different environment
+spring:
+  profiles:
+    active: prod
