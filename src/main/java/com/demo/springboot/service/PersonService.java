@@ -2,29 +2,31 @@ package com.demo.springboot.service;
 
 import com.demo.springboot.pojo.Person;
 import com.demo.springboot.respository.PersonRespository;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by wang on 17-4-9.
  */
 @Service
 public class PersonService {
+
     @Autowired
     private PersonRespository personRespository;
 
     //set varchar(10) for tables
-    @Transactional
-    public void insertPersons(){
-        Person person=new Person();
-        person.setAge(10);
-        person.setName("w");
-        personRespository.save(person);
+    public void insertPersons(String name, int age) {
+        System.out.println("insertPersons");
+        personRespository.save(new Person(name, age));
+    }
 
-        Person person1=new Person();
-        person1.setAge(10);
-        person1.setName("wangfdadsadfawu");
-        personRespository.save(person1);
+    public List<Person> findAll() {
+        Iterable<Person> all = personRespository.findAll();
+        List<Person> people = Lists.newArrayList(all);
+        return people;
     }
 }

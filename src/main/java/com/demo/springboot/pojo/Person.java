@@ -2,6 +2,7 @@ package com.demo.springboot.pojo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -11,19 +12,30 @@ import javax.persistence.Id;
 public class Person {
 
     @Id
-    @GeneratedValue
-    private Integer id;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
     private String name;
     private Integer age;
 
-    public Person() {
+    protected Person() {
     }
 
-    public Integer getId() {
+    public Person(String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public Person(Long id, Integer age, String name) {
+        this.name = name;
+        this.age = age;
+        this.id = id;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
