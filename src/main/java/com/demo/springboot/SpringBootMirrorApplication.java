@@ -3,7 +3,9 @@ package com.demo.springboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
+//查看和强制杀掉进程 8080
+// lsof -i: 8080
+//sudo kill  -9   12345
 @SpringBootApplication
 public class SpringBootMirrorApplication {
 

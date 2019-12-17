@@ -1,6 +1,7 @@
 server:
-  port: 8082
-  context-path: /SpringBoot
+  port: 8083
+  servlet:
+    context-path: /SpringBoot
 height: top
 person:
   name: lisi
