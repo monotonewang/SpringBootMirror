@@ -1,6 +1,6 @@
 package com.demo.springboot.respository;
 
-import com.demo.springboot.pojo.Person;
+import com.demo.springboot.pojo.Student;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -8,12 +8,12 @@ import java.util.List;
 /**
  * Created by wang on 17-4-9.
  */
-public interface PersonRespository extends CrudRepository<Person, Long> {
+public interface PersonRespository extends CrudRepository<Student, Long> {
 
 //    import org.springframework.data.jpa.repository.JpaRepository;
 
 
-    List<Person> findByName(String lastName);
+    List<Student> findByName(String lastName);
 
 
 }

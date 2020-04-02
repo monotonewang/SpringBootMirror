@@ -3,6 +3,16 @@ server:
   servlet:
     context-path: /SpringBoot
 height: top
+
 person:
-  name: lisi
+  name: zhansan
   age : 19
+  birth : 2019/10/19
+  boss : false
+  map : {k1: v1,k2: v2}
+  lists :
+    - apple
+    - orange
+  dog :
+    name : 锄头
+    age  : 3

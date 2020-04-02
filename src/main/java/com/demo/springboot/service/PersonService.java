@@ -1,6 +1,7 @@
 package com.demo.springboot.service;
 
 import com.demo.springboot.pojo.Person;
+import com.demo.springboot.pojo.Student;
 import com.demo.springboot.respository.PersonRespository;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,12 @@ public class PersonService {
     //set varchar(10) for tables
     public void insertPersons(String name, int age) {
         System.out.println("insertPersons");
-        personRespository.save(new Person(name, age));
+        personRespository.save(new Student(name, age));
     }
 
-    public List<Person> findAll() {
-        Iterable<Person> all = personRespository.findAll();
-        List<Person> people = Lists.newArrayList(all);
+    public List<Student> findAll() {
+        Iterable<Student> all = personRespository.findAll();
+        List<Student> people = Lists.newArrayList(all);
         return people;
     }
 }

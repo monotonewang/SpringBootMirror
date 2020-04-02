@@ -3,6 +3,10 @@ package com.demo.springboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+//部署
+//sudo mvn package && java -jar target/gs-spring-boot-0.1.0.jar
+
 //查看和强制杀掉进程 8080
 // lsof -i: 8080
 //sudo kill  -9   12345
