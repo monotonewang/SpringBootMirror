@@ -4,8 +4,9 @@ server:
     context-path: /SpringBoot
 height: top
 
+---
 person:
-  name: zhansan
+  name: zhansan${random.uuid}
   age : 19
   birth : 2019/10/19
   boss : false
@@ -14,5 +15,5 @@ person:
     - apple
     - orange
   dog :
-    name : 锄头
+    name : 锄头${person.name}
     age  : 3
