@@ -8,10 +8,16 @@ import com.demo.springboot.pojo.Student;
 import com.demo.springboot.respository.PersonRespository;
 import com.demo.springboot.service.PersonService;
 import com.google.gson.Gson;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.smartcardio.Card;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,10 +33,11 @@ public class PersonController {
     @Autowired
     private PersonService personService;
 
+    Logger logger = LoggerFactory.getLogger(PersonController.class);
 
     @PostMapping(value = "/insert")
-    public String insertPersons(@RequestBody Person person) {
-        System.out.println("person=" + person);
+    public String insertPersons(@RequestBody @Valid Person person) {
+        logger.info("person=" + person);
         personService.insertPersons(person.getName(), person.getAge());
         return "Saved";
     }
@@ -42,17 +49,27 @@ public class PersonController {
     public String getPersons() {
         List<Student> personList = personService.findAll();
         System.out.println(personList);
-        return  JSON.toJSONString(personList);
+        return JSON.toJSONString(personList);
+    }
+
+    @ApiResponse(code = 200,message = "success",response=Student.class)
+    @ApiOperation(value="查询单个人", notes="查询个人信息", produces="application/json")
+    @ApiImplicitParam(name = "id", value = "唯一id", paramType = "query", required = true, dataType = "String")
+    @GetMapping(value = "/getPerson")
+    public Student findById(@RequestParam String id) {
+        Student student = personService.findById(id);
+        logger.info("person findById=" + student);
+        return student;
     }
 
     @GetMapping(value = "/getCard")
     public String getCard() {
-        List<CardType> list=new ArrayList<>();
+        List<CardType> list = new ArrayList<>();
 
         CardType cardType = new CardType();
         cardType.setDay("3");
-        List<CardDetail> cardDetails=new ArrayList<>();
-        CardDetail cardDetail=new CardDetail();
+        List<CardDetail> cardDetails = new ArrayList<>();
+        CardDetail cardDetail = new CardDetail();
         cardDetail.setName("体验");
         cardDetail.setId("1");
         cardDetails.add(cardDetail);
@@ -61,8 +78,8 @@ public class PersonController {
 
         CardType cardType2 = new CardType();
         cardType2.setDay("4");
-        List<CardDetail> cardDetails2=new ArrayList<>();
-        CardDetail cardDetail3=new CardDetail();
+        List<CardDetail> cardDetails2 = new ArrayList<>();
+        CardDetail cardDetail3 = new CardDetail();
         cardDetail3.setName("体验");
         cardDetail3.setId("1");
         cardDetails2.add(cardDetail3);
@@ -74,7 +91,9 @@ public class PersonController {
         list.add(cardType2);
 
         System.out.println(list);
-        return  new Gson().toJson(list);
+
+
+        return new Gson().toJson(list);
 //        return  JSON.toJSONString(list);
     }
 

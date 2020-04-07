@@ -13,7 +13,10 @@ public interface PersonRespository extends CrudRepository<Student, Long> {
 //    import org.springframework.data.jpa.repository.JpaRepository;
 
 
+
     List<Student> findByName(String lastName);
+
+    Student findStudentById(Long id);
 
 
 }

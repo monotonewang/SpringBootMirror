@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -30,8 +31,13 @@ public class Person {
 //    @Value("1") 松散绑定 一个一个注入
     private Long id;
 
+    @NotEmpty(message = "姓名不能为空")
+    @Size(min = 2, max = 8, message = "姓名长度必须大于 2 且小于 20 字")
     private String name;
-    @Value("#{11*2}")
+//    @Value("#{11*2}")
+    @NotNull(message = "年龄不能不为空")
+    @Min(value=0,message="年龄必须大于0")
+    @Max(value=300,message="年龄不大于300")
     private Integer age;
     @Value("true")
     private Boolean boss;
@@ -39,6 +45,15 @@ public class Person {
     private Map<String, Object> map;
     private List<Object> lists;
     private Dog dog;
+
+
+    public String getName(){
+        return name;
+    }
+
+    public Integer getAge(){
+        return age;
+    }
 
     protected Person() {
     }

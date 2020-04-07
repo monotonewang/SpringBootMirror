@@ -12,6 +12,9 @@ import org.springframework.context.annotation.ImportResource;
 // lsof -i: 8080
 //sudo kill  -9   12345
 
+//@EnableSwagger2Doc // 开启 Swagger
+
+
 //导入spring配置文件。让配置文件内容生效
 @ImportResource(locations = {"classpath:beans.xml"})
 @SpringBootApplication

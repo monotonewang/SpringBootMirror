@@ -30,4 +30,8 @@ public class PersonService {
         List<Student> people = Lists.newArrayList(all);
         return people;
     }
+
+    public Student findById(String id) {
+        return personRespository.findStudentById (Long.valueOf(id));
+    }
 }

@@ -13,4 +13,8 @@ import org.springframework.stereotype.Component;
 public class Personal_PropertySource {
     private String country;
 
+
+    public String getCountry() {
+        return country;
+    }
 }
