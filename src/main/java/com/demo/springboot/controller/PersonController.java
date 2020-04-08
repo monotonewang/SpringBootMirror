@@ -62,6 +62,14 @@ public class PersonController {
         return student;
     }
 
+    //http://localhost:8081/SpringBoot/person/getPersonByName?name=iOS
+    @GetMapping(value = "/getPersonByName")
+    public Student findByName(@RequestParam String name) {
+        Student student = personService.findByName(name);
+        logger.info("person findByName=" + student);
+        return student;
+    }
+
     @GetMapping(value = "/getCard")
     public String getCard() {
         List<CardType> list = new ArrayList<>();

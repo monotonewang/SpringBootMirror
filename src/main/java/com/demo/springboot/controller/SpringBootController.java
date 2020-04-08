@@ -22,6 +22,9 @@ public class SpringBootController {
 
     Logger logger = LoggerFactory.getLogger(SpringBootController.class);
 
+    /**
+     * 获取配置文件的东西
+     */
     @Autowired
     Personal_PropertySource personal_propertySource;
 
@@ -66,8 +69,13 @@ public class SpringBootController {
     @Autowired
     private PersonProperties personProperties;
 
+    /**
+     * thymeleaf 模板
+     * @return
+     */
     @RequestMapping(value = "/getHtml",method = RequestMethod.GET)
     public String getHtml(){
+        //classpath:template/SpringBoot.html
         return "SpringBoot";
     }
 }

@@ -1,5 +1,6 @@
 package com.demo.springboot.service;
 
+import com.demo.springboot.mapper.PersonMapper;
 import com.demo.springboot.pojo.Person;
 import com.demo.springboot.pojo.Student;
 import com.demo.springboot.respository.PersonRespository;
@@ -12,12 +13,16 @@ import java.util.List;
 
 /**
  * Created by wang on 17-4-9.
+ *
  */
 @Service
 public class PersonService {
 
     @Autowired
     private PersonRespository personRespository;
+
+    @Autowired
+    private PersonMapper personMapper;
 
     //set varchar(10) for tables
     public void insertPersons(String name, int age) {
@@ -29,6 +34,10 @@ public class PersonService {
         Iterable<Student> all = personRespository.findAll();
         List<Student> people = Lists.newArrayList(all);
         return people;
+    }
+
+    public Student findByName(String name){
+        return personMapper.findByName (name);
     }
 
     public Student findById(String id) {

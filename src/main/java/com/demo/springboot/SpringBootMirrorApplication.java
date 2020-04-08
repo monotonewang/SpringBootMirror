@@ -1,6 +1,7 @@
 package com.demo.springboot;
 
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
@@ -12,10 +13,12 @@ import org.springframework.context.annotation.ImportResource;
 // lsof -i: 8080
 //sudo kill  -9   12345
 
-//@EnableSwagger2Doc // 开启 Swagger
 
-
+/**
+ * 保存用户每次登陆系统的时间
+ */
 //导入spring配置文件。让配置文件内容生效
+@MapperScan("com.demo.springboot.mapper")
 @ImportResource(locations = {"classpath:beans.xml"})
 @SpringBootApplication
 public class SpringBootMirrorApplication {

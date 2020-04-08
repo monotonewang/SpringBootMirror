@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.springboot.mapper.StudentCourseMapper">
+
+    <!--    <resultMap id="BaseResultMap" type="com.demo.springboot.pojo.Course">-->
+    <!--        <result column="id" jdbcType="BIGINT" property="id" />-->
+    <!--        <result column="name" jdbcType="VARCHAR" property="name" />-->
+    <!--    </resultMap>-->
+
+    <insert id="insert">
+        insert into student_course (student_id,course_id) values(#{studentId},#{courseId})
+        <selectKey resultType="java.lang.Long" keyProperty="id">
+            SELECT @@IDENTITY AS ID
+        </selectKey>
+    </insert>
+
+
+    <resultMap id="BaseResultMap" type="com.demo.springboot.pojo.StudentCourse">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="student_id" jdbcType="INTEGER" property="studentId"/>
+        <result column="cid" jdbcType="INTEGER" property="courseId"/>
+        <result column="cname" jdbcType="VARCHAR" property="courseName"/>
+        <result column="sname" jdbcType="VARCHAR" property="studentName"/>
+    </resultMap>
+
+    <select id="getCourseByStudent" resultMap="BaseResultMap">
+            select sc.student_id,sc.course_id as cid,s.name as sname,c.name as cname from student_course as sc inner join student as s on sc.student_id=s.id inner join course as c on c.id=sc.course_id where student_id=#{studentId};
+    </select>
+
+
+</mapper>

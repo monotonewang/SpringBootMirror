@@ -19,3 +19,9 @@ person:
   dog :
     name : 锄头${person.name}
     age  : 3
+
+---
+
+mybatis:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  type-aliases-package: com.demo.springboot.mapper
